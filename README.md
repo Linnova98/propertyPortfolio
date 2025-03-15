@@ -27,12 +27,12 @@ localhost:8000/api/portfolio/{id}/delete/
 To delete in console use this:  
 fetch("http://localhost:8000/api/portfolio/1/delete/", { method: "DELETE"}).then(response=>response.json()).then(data => console.log(data)).catch(error => console.error("Error:" , error ));
 
-Example links to search or filter:
-localhost:8000/api/portfolio/?owner_of_portfolio=Test%20Tester
-localhost:8000/api/portfolio/?geographic_region=Europe
-localhost:8000/api/portfolio/?name=Test&sort_name=asc
-localhost:8000/api/portfolio/?owner_of_portfolio=Test%20Tester&sort_owner_of_portfolio=desc
-localhost:8000/api/portfolio/?geographic_region=Europe&sort_geographic_region=as
+Example links to search or filter:  
+localhost:8000/api/portfolio/?owner_of_portfolio=Name  
+localhost:8000/api/portfolio/?geographic_region=Europe  
+localhost:8000/api/portfolio/?name=Test&sort_name=asc  
+localhost:8000/api/portfolio/?owner_of_portfolio=Test%20Tester&sort_owner_of_portfolio=desc  
+localhost:8000/api/portfolio/?geographic_region=Europe&sort_geographic_region=as  
 localhost:8000/api/portfolio/?name=Test&sort_name=asc&page=1
 
 **Property**
@@ -62,7 +62,7 @@ localhost:8000/api/property/{id}/delete/
 To delete in console use this:  
 fetch("http://localhost:8000/api/portfolio/{id}/delete/", { method: "DELETE"}).then(response=>response.json()).then(data => console.log(data)).catch(error => console.error("Error:" , error ));
 
-Example links to search or filter:
+Example links to search or filter:  
 localhost:8000/api/property/?zip_place=Trondheim
 localhost:8000/api/property/?address=Testveien
 localhost:8000/api/property/?portfolio=1
@@ -91,7 +91,7 @@ localhost:8000/api/property/?sort_address=asc
 - Open Git Bash
 - Change to the directory where you want to clone the repostiotory
 - Type "git clone" and paste the url EXAMPLE:git clone https://github.com/USERNAME/YOUR-REPOSITORY
-- Pres Enter to create your local clone
+- Press Enter to create your local clone
 
 ### Step 2 - Create virtual environment
 
@@ -121,8 +121,10 @@ localhost:8000/api/property/?sort_address=asc
 
 This is added here for some extra security to not leak any keys or passwords by using environ
 
-- Create an folder in the project that you name **Media**  
-  This is for the images and the media file path
+- Create an folder in the project that you name
+  **Media**  
+  This is for the images and the media file path, I ignored it for now to not share images and files.
+  It should be in the outer directory of the project the same as portfolio, property, propertyPotfolio and files like README, env, requirements.txt etc
 
 ### Step 5 - Configure a PostgreSQL database
 
@@ -144,8 +146,8 @@ To create a SECRET_KEY you could use Django
   from django.core.management.utils import get_random_secret_key
   print(get_random_secret_key())
 
-  copy the string into the env file SECRET_KEY
-  and to quit the django shell type in  
+  Copy the string into the env file SECRET_KEY
+  To quit the django shell type in:  
   quit()
   And you should be back in the project terminal
 
@@ -153,13 +155,13 @@ Add all these fields to your env file
 
 ### Step 6 - Run migrations and start the server
 
-- First run migration by type in  
+- First run migration by type in:  
   python manage.py migrate
 
-- Create an superuser by type in  
+- Create an superuser by type in:  
   python manage.py createsuperuser
 
 Fill in the fields in your terminal like username, email, password, password (again), and if the password isn't good enough for the validation choose y to buypass and N to not and run createsuperuser again with an allowed password.
 
-- Start the server by type in  
+- Start the server by type in:  
   python manage.py runserver
