@@ -1,6 +1,78 @@
 # Property and portfolio project
 
-## How to download and run on other computer.
+## Links
+
+Using http://localhost:8000/
+Fields that needs to be change in order for links to work is inside {} curly brackets with the field to put there like id is {id}
+
+**Portfolio**
+localhost:8000/api/portfolio
+
+localhost:8000/api/portfolio/all
+This will get all the portfolios with all fields
+
+localhost:8000/api/portfolio/read/{id}/
+
+localhost:8000/api/portfolio/create/
+json string example to create portfolio
+{
+"name": "Name of portfolio",
+"owner_of_portfolio": "Name of owner",
+"geographic_region": "Europe"
+}
+
+localhost:8000/api/portfolio/update/{id}/
+
+localhost:8000/api/portfolio/{id}/delete/
+To delete in console use this:  
+fetch("http://localhost:8000/api/portfolio/1/delete/", { method: "DELETE"}).then(response=>response.json()).then(data => console.log(data)).catch(error => console.error("Error:" , error ));
+
+Example links to search or filter:
+localhost:8000/api/portfolio/?owner_of_portfolio=Test%20Tester
+localhost:8000/api/portfolio/?geographic_region=Europe
+localhost:8000/api/portfolio/?name=Test&sort_name=asc
+localhost:8000/api/portfolio/?owner_of_portfolio=Test%20Tester&sort_owner_of_portfolio=desc
+localhost:8000/api/portfolio/?geographic_region=Europe&sort_geographic_region=as
+localhost:8000/api/portfolio/?name=Test&sort_name=asc&page=1
+
+**Property**
+localhost:8000/api/property/
+
+localhost:8000/api/property/all/
+This will get all the properties with all fields
+
+localhost:8000/api/property/read/{id}/
+
+localhost:8000/api/property/create/
+json string example to create property
+{
+"address": "Testveien 9",
+"zip_code": "7010",
+"zip_place": "Trondheim",
+"estimated_value": 5110.0,
+"construction_year": 2019,
+"usable_area": 5000.0,
+"image": null,
+"portfolio": 1
+}
+
+localhost:8000/api/property/update/{id}/
+
+localhost:8000/api/property/{id}/delete/
+To delete in console use this:  
+fetch("http://localhost:8000/api/portfolio/{id}/delete/", { method: "DELETE"}).then(response=>response.json()).then(data => console.log(data)).catch(error => console.error("Error:" , error ));
+
+Example links to search or filter:
+localhost:8000/api/property/?zip_place=Trondheim
+localhost:8000/api/property/?address=Testveien
+localhost:8000/api/property/?portfolio=1
+localhost:8000/api/property/?min_value=100000&max_value=500000
+localhost:8000/api/property/?min_year=2000&max_year=2020
+localhost:8000/api/property/?sort_usable_area=asc
+localhost:8000/api/property/?sort_zip_place=desc
+localhost:8000/api/property/?sort_address=asc
+
+## Guide to download and run.
 
 ### Step 1 - Clone project from Github
 
@@ -11,7 +83,7 @@
 - Click "Choose" and navigate to your local directory where you want to clone the repostitory
 - Click "Clone"
 
-**_With Git!_**
+**With Git!**
 
 - In the repostitory on Github click the "<> Code" button
 - Check that the link is HTTPS and not SSH or GitHub CLI
@@ -65,8 +137,17 @@ To create a SECRET_KEY you could use Django
 
 - Go to your termnial and type in:
   python manage.py shell
+- If that dosen't work you have to install psycopg2 to run the shell. Type in:  
+  pip install psycopg2
+  and then type in this again  
+  python manage.py shell
   from django.core.management.utils import get_random_secret_key
   print(get_random_secret_key())
+
+  copy the string into the env file SECRET_KEY
+  and to quit the django shell type in  
+  quit()
+  And you should be back in the project terminal
 
 Add all these fields to your env file
 
