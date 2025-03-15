@@ -111,7 +111,6 @@ def add_items(request):
         item.save()
         return Response(item.data, status=status.HTTP_201_CREATED)
     else:
-        print(item.error)
         return Response(item.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['GET', 'PUT'])
