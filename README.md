@@ -139,7 +139,7 @@ To create a SECRET_KEY you could use Django
 
 - Go to your termnial and type in:
   python manage.py shell
-- If that dosen't work you have to install psycopg2 to run the shell. Type in:  
+- If that dosen't work you could install psycopg2(the project uses psycopg) to run the shell or just put in a string of 50 random characters. Type in:  
   pip install psycopg2
   and then type in this again  
   python manage.py shell
