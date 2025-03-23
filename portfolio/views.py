@@ -15,13 +15,13 @@ class PropertyPagination(PageNumberPagination):
 
 @api_view(['GET'])
 def getPortfolios(request):
-    portfolio = Portfolio.objects.all()
+    portfolio = Portfolio.objects.prefetch_related("properties")
     serializer = PortfolioListSerializer(portfolio, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
 def PorfolioOverview(request):
-    queryset = Portfolio.objects.all()
+    queryset = Portfolio.objects.prefetch_related("properties")
 
     filtered_portfolios = PortfolioFilter(request.GET, queryset=queryset).qs
 
@@ -58,9 +58,9 @@ def PorfolioOverview(request):
 @api_view(['GET'])
 def view_instances(request):
     if request.query_params:
-        portfolio = Portfolio.objects.filter(**request.query_params.dict())
+        portfolio = Portfolio.objects.filter(**request.query_params.dict()).prefetch_related("properties")
     else:
-        portfolio = Portfolio.objects.all()
+        portfolio = Portfolio.objects.prefetch_related("properties").all()
     
     if portfolio:
         serializeer = PortfolioReadSerializer(portfolio, many=True)
@@ -71,7 +71,7 @@ def view_instances(request):
 
 @api_view(['GET'])
 def view_instance(request, pk):
-    portfolio_instance = get_object_or_404(Portfolio, pk=pk)
+    portfolio_instance = get_object_or_404(Portfolio.objects.prefetch_related("properties"), pk=pk)
 
     serializer = PortfolioReadSerializer(portfolio_instance)
 

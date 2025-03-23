@@ -15,7 +15,7 @@ class PropertyPagination(PageNumberPagination):
 
 @api_view(['GET'])
 def PropertyOverview(request):
-    queryset = Property.objects.all()
+    queryset = Property.objects.select_related("portfolio")
 
     filtered_properties = PropertyFilter(request.GET, queryset=queryset).qs
 
@@ -68,9 +68,9 @@ def PropertyOverview(request):
 @api_view(['GET'])
 def view_items(request):
     if request.query_params:
-        property = Property.objects.filter(**request.query_params.dict())
+        property = Property.objects.filter(**request.query_params.dict()).select_related("portfolio")
     else:
-        property = Property.objects.all()
+        property = Property.objects.select_related("portfolio").all()
 
     if property:
         serializer = PropertyReadSerializer(property, many=True)
@@ -81,7 +81,7 @@ def view_items(request):
     
 @api_view(['GET'])
 def view_item(request, pk):
-    property_item = get_object_or_404(Property, pk=pk)
+    property_item = get_object_or_404(Property.objects.select_related("portfolio"), pk=pk)
 
     serializer = PropertyReadSerializer(property_item)
 
