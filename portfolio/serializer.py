@@ -13,7 +13,7 @@ class PortfolioListSerializer(serializers.ModelSerializer):
                 'zip_place',
                 )
 
-    properties = PropertySerializer(many=True, read_only=True, source='property')
+    properties = PropertySerializer(many=True, read_only=True)
     class Meta:
         model=Portfolio
         fields=(
@@ -38,7 +38,7 @@ class PortfolioReadSerializer(serializers.ModelSerializer):
                 'image',
                 )
 
-    properties = PropertySerializer(many=True, read_only=True, source='property')
+    properties = PropertySerializer(many=True, read_only=True)
     class Meta:
         model=Portfolio
         fields=(

@@ -53,7 +53,7 @@ class PropertyReadSerializer(serializers.ModelSerializer):
             )
 
 class PropertyEditSerializer(serializers.ModelSerializer):
-    portfolio = serializers.PrimaryKeyRelatedField(queryset=Portfolio.objects.all())
+    portfolio = serializers.PrimaryKeyRelatedField(queryset=Portfolio.objects.all(), allow_null=True, required=False)
     class Meta:
         model = Property
         fields = (

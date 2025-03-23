@@ -5,9 +5,9 @@ class Property(models.Model):
     zip_code = models.CharField(max_length=4)
     zip_place = models.CharField(max_length=50)
 
-    estimated_value = models.FloatField()
+    estimated_value = models.FloatField(blank=True, null=True)
     construction_year = models.IntegerField()
     usable_area = models.FloatField()
     image = models.ImageField(upload_to='images/property/', null=True, blank=True)
 
-    portfolio = models.ForeignKey('portfolio.Portfolio', on_delete=models.CASCADE, related_name='property')
+    portfolio = models.ForeignKey('portfolio.Portfolio', on_delete=models.SET_NULL, null=True, blank=True, related_name='properties')
